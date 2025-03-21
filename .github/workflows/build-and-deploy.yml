@@ -33,3 +33,12 @@ jobs:
           dotnet restore '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/src/web-game/Globomantics.sln'
           dotnet build '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/src/web-game/Globomantics.sln' --configuration Release
           dotnet publish '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/src/web-game/Globomantics.sln' -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}/app-package' 
+  
+  codeql:
+    runs-on: ubuntu-latest
+
+    if: contains('refs/heads/develop refs/heads/recette', github.ref)
+
+    steps:   
+      - name: 'Security and Quality'
+        uses: security-and-quality
