@@ -14,7 +14,7 @@ on:
 env:
   AZURE_WEBAPP_NAME: 'globomantics-web-game'   # set this to your application's name
   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  DOTNET_VERSION: '5.0'           
+  DOTNET_VERSION: '9.0'           
 
 jobs:
   build-and-deploy:
@@ -27,6 +27,9 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: ${{ env.DOTNET_VERSION }} 
+
+      - name: Display dotnet version
+        run: dotnet --version
       
       - name: 'Build app package'
         run: |
